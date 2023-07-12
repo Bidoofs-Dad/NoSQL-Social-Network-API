@@ -87,13 +87,30 @@ module.exports = {
             res.status(500).json(err);
         }
     },
+    // async deleteFriend(req, res) {
+    //     try {
+    //         const user = await User.findOneAndDelete({ friends: params.friendId });
+
+    //         if (!user) {
+    //             return res.status(404).json({ message: 'No friend with that ID' });
+    //         }
+    //     } catch (err) {
+    //         res.status(500).json(err);
+    //     }
+    // },
     async deleteFriend(req, res) {
         try {
-            const user = await User.findOneAndDelete({ friends: params.friendId });
+            const user = await User.findOneAndUpdate(
+                { _id: req.params.userId },
+                { $pull: { friends: params.friendId } },
+                { runValidators: true, new: true }
+            );
 
             if (!user) {
-                return res.status(404).json({ message: 'No friend with that ID' });
+                return res.status(404).json({ message: 'No friend with this id!' });
             }
+
+            res.json(user);
         } catch (err) {
             res.status(500).json(err);
         }
