@@ -26,8 +26,8 @@ module.exports = {
         try {
             const thought = await Thought.create(req.body);
             await User.findOneAndUpdate(
-                { _id: req.params.userId },
-                { $push: { thoughts: _id } },
+                { _id: req.body.userId },
+                { $push: { thoughts: thought._id } },
                 { new: true }
             );
             res.json({ message: 'Thought added to User!' })
@@ -70,7 +70,7 @@ module.exports = {
         try {
             const thought = await Thought.findOneAndUpdate(
                 { _id: req.params.thoughtId },
-                { $push: { reactions: body } },
+                { $push: { reactions: req.body } },
                 { runValidators: true, new: true }
             );
 
@@ -88,8 +88,8 @@ module.exports = {
         try {
             const thought = await Thought.findOneAndUpdate(
                 { _id: req.params.thoughtId },
-                { $pull: { reactions: params.reactionId } },
-                { runValidators: true, new: true }
+                { $pull: { reactions: req.params.reactionId } },
+                { new: true }
             );
 
             if (!thought) {

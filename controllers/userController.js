@@ -3,7 +3,7 @@ const { User, Thought } = require('../models');
 module.exports = {
     async getAllUsers(req, res) {
         try {
-            const users = await User.find();
+            const users = await User.find()
             res.json(users);
         } catch (err) {
             res.status(500).json(err);
@@ -18,8 +18,8 @@ module.exports = {
                 })
                 .populate({
                     path: "thoughts",
-                });
-
+                })
+                console.log(req.params.userId)
             if (!user) {
                 return res.status(404).json({ message: 'No user with that ID' });
             }
@@ -33,8 +33,9 @@ module.exports = {
         try {
             const user = await User.create(req.body);
             res.json(user);
+            console.log("is this working?");
         } catch (err) {
-            res.status(500).json(err);
+            res.status(500).json({error: 'Failed to create user!'});
         }
     },
     async updateUser(req, res) {
@@ -73,7 +74,7 @@ module.exports = {
         try {
             const user = await User.findOneAndUpdate(
                 { _id: req.params.userId },
-                { $push: { friends: params.friendId } },
+                { $push: { friends: req.params.friendId } },
                 { runValidators: true, new: true }
             );
 
@@ -102,7 +103,7 @@ module.exports = {
         try {
             const user = await User.findOneAndUpdate(
                 { _id: req.params.userId },
-                { $pull: { friends: params.friendId } },
+                { $pull: { friends: req.params.friendId } },
                 { runValidators: true, new: true }
             );
 
