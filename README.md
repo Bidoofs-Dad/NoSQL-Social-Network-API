@@ -50,7 +50,7 @@ I ran into a few issues when building this, some were solved, some unfortunately
 
 Below I will include a video of the application working as well as some screenshots!
 
-
+[Demonstration.webm](https://github.com/Bidoofs-Dad/NoSQL-Social-Network-API/assets/126542828/01072471-eb22-4c1a-951e-450628100f78)
 
 ![NoSQL-Social-Network-API](./assets/Screenshot%201.png)
 ![NoSQL-Social-Network-API](./assets/Screenshot%202.png)
