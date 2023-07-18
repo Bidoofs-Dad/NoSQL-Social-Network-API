@@ -52,7 +52,8 @@ Below I will include a video of the application working as well as some screensh
 
 
 
-![NoSQL-Social-Network-API](./)
+![NoSQL-Social-Network-API](./assets/Screenshot%201.png)
+![NoSQL-Social-Network-API](./assets/Screenshot%202.png)
 
 
 ## Conclusion
